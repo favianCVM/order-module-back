@@ -1,0 +1,10 @@
+[
+	{
+		"model": "orderModule.user",
+		"pk": 1,
+		"fields": {
+			"name": "firstname",
+			"lastName": "lastname"
+		}
+	}
+]
