@@ -22,5 +22,101 @@
 			"firstName": "firstname3",
 			"lastName": "lastname3"
 		}
+	},
+	{
+		"model": "ordersModule.ProductCategory",
+		"pk": 1,
+		"fields": {
+			"name": "Repuesto de automovil"
+		}
+	},
+	{
+		"model": "ordersModule.ProductCategory",
+		"pk": 2,
+		"fields": {
+			"name": "Iluminacion"
+		}
+	},
+	{
+		"model": "ordersModule.ProductCategory",
+		"pk": 3,
+		"fields": {
+			"name": "Plomeria"
+		}
+	},
+	{
+		"model": "ordersModule.Product",
+		"pk": 1,
+		"fields": {
+			"name": "llanta de auto",
+			"description": "llanta de repuesto para un automovil",
+			"productCategoryId": 1
+		}
+	},
+	{
+		"model": "ordersModule.Product",
+		"pk": 2,
+		"fields": {
+			"name": "Bombilla de luz blanca",
+			"description": "Bombilla para iluminar salon de fiestas",
+			"productCategoryId": 2
+		}
+	},
+	{
+		"model": "ordersModule.Product",
+		"pk": 3,
+		"fields": {
+			"name": "Tuberia de agua",
+			"description": "Tuberia de agua para cocina",
+			"productCategoryId": 3
+		}
+	},
+	{
+		"model": "ordersModule.Provider",
+		"pk": 1,
+		"fields": {
+			"name": "ACME"
+		}
+	},
+	{
+		"model": "ordersModule.Provider",
+		"pk": 2,
+		"fields": {
+			"name": "Akatsuki"
+		}
+	},
+	{
+		"model": "ordersModule.Provider",
+		"pk": 3,
+		"fields": {
+			"name": "Ghost busters INC."
+		}
+	},
+	{
+		"model": "ordersModule.Inventory",
+		"pk": 1,
+		"fields": {
+			"providerId": 1,
+			"productId": 1,
+			"quantity": 20
+		}
+	},
+	{
+		"model": "ordersModule.Inventory",
+		"pk": 2,
+		"fields": {
+			"providerId": 2,
+			"productId": 2,
+			"quantity": 25
+		}
+	},
+	{
+		"model": "ordersModule.Inventory",
+		"pk": 3,
+		"fields": {
+			"providerId": 3,
+			"productId": 3,
+			"quantity": 10
+		}
 	}
 ]

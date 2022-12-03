@@ -22,7 +22,9 @@ class Order(models.Model):
         db_table = "orders"
 
     date = models.DateField()
-    providerId = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    providerId = models.ForeignKey(
+        Provider, on_delete=models.CASCADE, db_column="providerId"
+    )
 
 
 # Productos
@@ -32,8 +34,9 @@ class Product(models.Model):
 
     name = models.CharField(max_length=500)
     description = models.CharField(max_length=500)
-    quantity = models.IntegerField()
-    productCategoryId = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    productCategoryId = models.ForeignKey(
+        ProductCategory, on_delete=models.CASCADE, db_column="productCategoryId"
+    )
 
 
 # Usuarios
@@ -52,6 +55,21 @@ class ProductPerOrder(models.Model):
     class Meta:
         db_table = "products_per_orders"
 
-    productId = models.ForeignKey(Product, on_delete=models.CASCADE)
-    orderId = models.ForeignKey(Order, on_delete=models.CASCADE)
+    productId = models.ForeignKey(
+        Product, on_delete=models.CASCADE, db_column="productId"
+    )
+    orderId = models.ForeignKey(Order, on_delete=models.CASCADE, db_column="orderId")
     amount = models.IntegerField()
+
+
+class Inventory(models.Model):
+    class Meta:
+        db_table = "inventories"
+
+    providerId = models.ForeignKey(
+        Provider, on_delete=models.CASCADE, db_column="providerId"
+    )
+    productId = models.ForeignKey(
+        Product, on_delete=models.CASCADE, db_column="productId"
+    )
+    quantity = models.IntegerField()
