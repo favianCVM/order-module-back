@@ -1,10 +1,26 @@
 [
 	{
-		"model": "orderModule.user",
+		"model": "ordersModule.User",
 		"pk": 1,
 		"fields": {
-			"name": "firstname",
+			"firstName": "firstname",
 			"lastName": "lastname"
+		}
+	},
+	{
+		"model": "ordersModule.User",
+		"pk": 2,
+		"fields": {
+			"firstName": "firstname2",
+			"lastName": "lastname2"
+		}
+	},
+	{
+		"model": "ordersModule.User",
+		"pk": 3,
+		"fields": {
+			"firstName": "firstname3",
+			"lastName": "lastname3"
 		}
 	}
 ]
