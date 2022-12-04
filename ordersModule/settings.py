@@ -25,8 +25,6 @@ SECRET_KEY = "django-insecure-(-fj%s(-d^^r59to!2#sbo#-3(=be3f8xa)(ouj=8d#65w=_rp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
-
 
 # Application definition
 
@@ -51,6 +49,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "ordersModule.middleware.open_access_middleware",
 ]
 
 ROOT_URLCONF = "ordersModule.urls"
@@ -152,3 +151,7 @@ REST_FRAMEWORK = {
 # }
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = ["http://localhost"]
+CORS_ORIGIN_WHITELIST = ["http://localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
