@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-from .views import getProvidersAndProducts, InventoryEndPoint
+from .views import getProvidersAndProducts, GetProvidersAndProductsEndPoint
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-
-router.register(r"inventory", InventoryEndPoint, basename="inventory")
+router.register(
+    "get-provider-inventory", GetProvidersAndProductsEndPoint, basename="inventory"
+)
 
 urlpatterns = router.urls
 
