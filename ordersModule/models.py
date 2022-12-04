@@ -1,9 +1,24 @@
 from django.db import models
 
+# Usuarios
+class User(models.Model):
+    class Meta:
+        db_table = "users"
+
+    def __str__(self):
+        return self.first_name
+
+    first_name = models.CharField(max_length=500)
+    last_name = models.CharField(max_length=500)
+
+
 # Categorias de productos
 class ProductCategory(models.Model):
     class Meta:
         db_table = "product_categories"
+
+    def __str__(self):
+        return self.name
 
     name = models.CharField(max_length=500)
 
@@ -12,6 +27,9 @@ class ProductCategory(models.Model):
 class Provider(models.Model):
     class Meta:
         db_table = "providers"
+
+    def __str__(self):
+        return self.name
 
     name = models.CharField(max_length=500)
 
@@ -22,9 +40,7 @@ class Order(models.Model):
         db_table = "orders"
 
     date = models.DateField()
-    providerId = models.ForeignKey(
-        Provider, on_delete=models.CASCADE, db_column="providerId"
-    )
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
 
 
 # Productos
@@ -34,18 +50,7 @@ class Product(models.Model):
 
     name = models.CharField(max_length=500)
     description = models.CharField(max_length=500)
-    productCategoryId = models.ForeignKey(
-        ProductCategory, on_delete=models.CASCADE, db_column="productCategoryId"
-    )
-
-
-# Usuarios
-class User(models.Model):
-    class Meta:
-        db_table = "users"
-
-    firstName = models.CharField(max_length=500)
-    lastName = models.CharField(max_length=500)
+    product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
 
 
 # --------------------------------------------------- tablas puente ---------------------------------
@@ -55,10 +60,8 @@ class ProductPerOrder(models.Model):
     class Meta:
         db_table = "products_per_orders"
 
-    productId = models.ForeignKey(
-        Product, on_delete=models.CASCADE, db_column="productId"
-    )
-    orderId = models.ForeignKey(Order, on_delete=models.CASCADE, db_column="orderId")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     amount = models.IntegerField()
 
 
@@ -66,10 +69,6 @@ class Inventory(models.Model):
     class Meta:
         db_table = "inventories"
 
-    providerId = models.ForeignKey(
-        Provider, on_delete=models.CASCADE, db_column="providerId"
-    )
-    productId = models.ForeignKey(
-        Product, on_delete=models.CASCADE, db_column="productId"
-    )
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()

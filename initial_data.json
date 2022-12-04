@@ -3,24 +3,24 @@
 		"model": "ordersModule.User",
 		"pk": 1,
 		"fields": {
-			"firstName": "firstname",
-			"lastName": "lastname"
+			"first_name": "first_name",
+			"last_name": "last_name"
 		}
 	},
 	{
 		"model": "ordersModule.User",
 		"pk": 2,
 		"fields": {
-			"firstName": "firstname2",
-			"lastName": "lastname2"
+			"first_name": "first_name2",
+			"last_name": "last_name2"
 		}
 	},
 	{
 		"model": "ordersModule.User",
 		"pk": 3,
 		"fields": {
-			"firstName": "firstname3",
-			"lastName": "lastname3"
+			"first_name": "first_name3",
+			"last_name": "last_name3"
 		}
 	},
 	{
@@ -50,7 +50,7 @@
 		"fields": {
 			"name": "llanta de auto",
 			"description": "llanta de repuesto para un automovil",
-			"productCategoryId": 1
+			"product_category": 1
 		}
 	},
 	{
@@ -59,7 +59,7 @@
 		"fields": {
 			"name": "Bombilla de luz blanca",
 			"description": "Bombilla para iluminar salon de fiestas",
-			"productCategoryId": 2
+			"product_category": 2
 		}
 	},
 	{
@@ -68,7 +68,7 @@
 		"fields": {
 			"name": "Tuberia de agua",
 			"description": "Tuberia de agua para cocina",
-			"productCategoryId": 3
+			"product_category": 3
 		}
 	},
 	{
@@ -96,8 +96,8 @@
 		"model": "ordersModule.Inventory",
 		"pk": 1,
 		"fields": {
-			"providerId": 1,
-			"productId": 1,
+			"provider": 1,
+			"product": 1,
 			"quantity": 20
 		}
 	},
@@ -105,8 +105,8 @@
 		"model": "ordersModule.Inventory",
 		"pk": 2,
 		"fields": {
-			"providerId": 2,
-			"productId": 2,
+			"provider": 2,
+			"product": 2,
 			"quantity": 25
 		}
 	},
@@ -114,8 +114,8 @@
 		"model": "ordersModule.Inventory",
 		"pk": 3,
 		"fields": {
-			"providerId": 3,
-			"productId": 3,
+			"provider": 3,
+			"product": 3,
 			"quantity": 10
 		}
 	}
