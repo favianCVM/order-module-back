@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from .models import Product, User, Provider, Order
-from rest_framework.decorators import api_view, permission_classes
+from .models import Product, User, Provider, Order, ProductPerOrder
+from rest_framework.decorators import api_view
 from rest_framework import status
 from .serializers import (
     ProductSerializer,
@@ -10,11 +10,14 @@ from .serializers import (
     CreateOrderSerializer,
     CreateProductPerOrderSerializer,
     OrderSerializer,
+    GetOrderProducts,
 )
 from rest_framework import viewsets, status
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 @csrf_exempt
@@ -61,6 +64,24 @@ def createOrderEndPoint(request):
 
     return Response(status=status.HTTP_201_CREATED)
 
+class GetOrderProductsEndPoint(viewsets.ModelViewSet):
+    queryset = ProductPerOrder.objects.all()
+    serializer_class = GetOrderProducts
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["order"]
+
+
+class GetOrderDetailsEndPoint(viewsets.ModelViewSet):
+    serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        id = self.request.query_params.get('id')
+        queryset = Order.objects.all()
+        if id is not None:
+            queryset = queryset.filter(id=id)
+        return queryset
+
+
 class GetAllOrdersEndPoint(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
@@ -79,47 +100,4 @@ class GetUsersEndPoint(viewsets.ModelViewSet):
 
 class GetProductsEndPoint(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
-
     queryset = Product.objects.all()
-
-    # def get_queryset(self):
-    #     return Product.objects.raw(
-    #         "SELECT * FROM products INNER JOIN product_categories ON products.product_category_id = product_categories.id"
-    #     )
-
-
-# class GetProvidersAndProductsEndPoint(viewsets.ModelViewSet):
-#     # model = Inventory
-#     # permission_classes = [AllowAny]
-#     serializer_class = InventorySerializer
-
-#     def get_queryset(self):
-#         return Inventory.objects.raw(
-#             "SELECT * FROM inventories LEFT JOIN products ON  products.id = inventories.product_id LEFT JOIN providers ON providers.id = inventories.provider_id"
-#         )
-
-#     # def list(self, request):
-
-#     #     serializer = InventorySerializer()
-#     #     return Response(serializer.data)
-
-
-def getProvidersAndProducts(request):
-    # data = list(Inventory.objects.all().select_related("product").values())
-    # data = list(
-    #     Inventory.objects.raw(
-    #         "SELECT * FROM inventories INNER JOIN products WHERE inventories.product_id = products.id"
-    #     )
-    # )
-
-    data = list(
-        Inventory.objects.all()
-        .values()
-        .annotate(product="product_id", provider="provider_id")
-    )
-
-    # print(data.query)
-    print(data)
-
-    # return JsonResponse(data, safe=False, status=status.HTTP_200_OK)
-    return HttpResponse(data, status=status.HTTP_200_OK)

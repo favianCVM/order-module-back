@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_filters",
     "corsheaders",
     "rest_framework",
     "ordersModule",
@@ -130,19 +131,12 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# REST_FRAMEWORK = {
-#     # Use Django's standard `django.contrib.auth` permissions,
-#     # or allow read-only access for unauthenticated users.
-#     "DEFAULT_PERMISSION_CLASSES": [
-#         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-#     ]
-# }
-
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
     ],
     "DATE_INPUT_FORMATS": ["iso-8601", "%Y-%m-%dT%H:%M:%S.%fZ"],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
 # REST_FRAMEWORK = {
@@ -151,11 +145,13 @@ REST_FRAMEWORK = {
 #     )
 # }
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "http://localhost:3000"]
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "http://localhost:3000"]
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000/"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
+APPEND_SLASH = True
