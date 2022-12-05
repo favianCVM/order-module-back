@@ -130,19 +130,20 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ]
-}
-
 # REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
 #     "DEFAULT_PERMISSION_CLASSES": [
-#         "rest_framework.permissions.AllowAny",
+#         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
 #     ]
 # }
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    "DATE_INPUT_FORMATS": ["iso-8601", "%Y-%m-%dT%H:%M:%S.%fZ"],
+}
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': (
@@ -152,6 +153,9 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = ["http://localhost"]
-CORS_ORIGIN_WHITELIST = ["http://localhost"]
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "http://localhost:3000"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000/"]
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True

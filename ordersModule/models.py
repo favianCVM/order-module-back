@@ -5,9 +5,6 @@ class User(models.Model):
     class Meta:
         db_table = "users"
 
-    def __str__(self):
-        return self.first_name
-
     first_name = models.CharField(max_length=500)
     last_name = models.CharField(max_length=500)
 
@@ -17,9 +14,6 @@ class ProductCategory(models.Model):
     class Meta:
         db_table = "product_categories"
 
-    def __str__(self):
-        return self.name
-
     name = models.CharField(max_length=500)
 
 
@@ -27,9 +21,6 @@ class ProductCategory(models.Model):
 class Provider(models.Model):
     class Meta:
         db_table = "providers"
-
-    def __str__(self):
-        return self.name
 
     name = models.CharField(max_length=500)
 
@@ -40,7 +31,9 @@ class Order(models.Model):
         db_table = "orders"
 
     date = models.DateField()
+    status = models.CharField(max_length=60, default="OPEN")
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 # Productos
@@ -50,6 +43,7 @@ class Product(models.Model):
 
     name = models.CharField(max_length=500)
     description = models.CharField(max_length=500)
+    quantity = models.IntegerField()
     product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
 
 
@@ -62,13 +56,4 @@ class ProductPerOrder(models.Model):
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    amount = models.IntegerField()
-
-
-class Inventory(models.Model):
-    class Meta:
-        db_table = "inventories"
-
-    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()

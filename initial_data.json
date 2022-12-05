@@ -3,24 +3,24 @@
 		"model": "ordersModule.User",
 		"pk": 1,
 		"fields": {
-			"first_name": "first_name",
-			"last_name": "last_name"
+			"first_name": "carlos",
+			"last_name": "perez"
 		}
 	},
 	{
 		"model": "ordersModule.User",
 		"pk": 2,
 		"fields": {
-			"first_name": "first_name2",
-			"last_name": "last_name2"
+			"first_name": "alberto",
+			"last_name": "soja"
 		}
 	},
 	{
 		"model": "ordersModule.User",
 		"pk": 3,
 		"fields": {
-			"first_name": "first_name3",
-			"last_name": "last_name3"
+			"first_name": "laura",
+			"last_name": "jimenez"
 		}
 	},
 	{
@@ -50,7 +50,8 @@
 		"fields": {
 			"name": "llanta de auto",
 			"description": "llanta de repuesto para un automovil",
-			"product_category": 1
+			"product_category": 1,
+			"quantity": 25 
 		}
 	},
 	{
@@ -59,7 +60,8 @@
 		"fields": {
 			"name": "Bombilla de luz blanca",
 			"description": "Bombilla para iluminar salon de fiestas",
-			"product_category": 2
+			"product_category": 2,
+			"quantity": 23
 		}
 	},
 	{
@@ -68,7 +70,8 @@
 		"fields": {
 			"name": "Tuberia de agua",
 			"description": "Tuberia de agua para cocina",
-			"product_category": 3
+			"product_category": 3,
+			"quantity": 32
 		}
 	},
 	{
@@ -90,33 +93,6 @@
 		"pk": 3,
 		"fields": {
 			"name": "Ghost busters INC."
-		}
-	},
-	{
-		"model": "ordersModule.Inventory",
-		"pk": 1,
-		"fields": {
-			"provider": 1,
-			"product": 1,
-			"quantity": 20
-		}
-	},
-	{
-		"model": "ordersModule.Inventory",
-		"pk": 2,
-		"fields": {
-			"provider": 2,
-			"product": 2,
-			"quantity": 25
-		}
-	},
-	{
-		"model": "ordersModule.Inventory",
-		"pk": 3,
-		"fields": {
-			"provider": 3,
-			"product": 3,
-			"quantity": 10
 		}
 	}
 ]
