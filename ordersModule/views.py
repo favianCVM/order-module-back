@@ -64,6 +64,40 @@ def createOrderEndPoint(request):
 
     return Response(status=status.HTTP_201_CREATED)
 
+
+@csrf_exempt
+@api_view(["PUT"])
+def approveOrderStatusEndPoint(request):
+    print(request.data)
+
+    id = request.data["id"]
+
+    try:
+        order = Order.objects.get(pk=id)
+        order.status = "APPROVED"
+        order.save()
+    except Exception:
+        return Response(exception=Exception, status=status.HTTP_400_BAD_REQUEST)
+    finally:
+        return Response(status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+@api_view(["PUT"])
+def cancelOrderStatusEndPoint(request):
+    print(request.data)
+
+    id = request.data["id"]
+
+    try:
+        order = Order.objects.get(pk=id)
+        order.status = "CANCELED"
+        order.save()
+    except Exception:
+        return Response(exception=Exception, status=status.HTTP_400_BAD_REQUEST)
+    finally:
+        return Response(status=status.HTTP_201_CREATED)
+
+
 class GetOrderProductsEndPoint(viewsets.ModelViewSet):
     queryset = ProductPerOrder.objects.all()
     serializer_class = GetOrderProducts
@@ -75,7 +109,7 @@ class GetOrderDetailsEndPoint(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
 
     def get_queryset(self):
-        id = self.request.query_params.get('id')
+        id = self.request.query_params.get("id")
         queryset = Order.objects.all()
         if id is not None:
             queryset = queryset.filter(id=id)

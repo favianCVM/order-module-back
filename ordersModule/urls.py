@@ -9,6 +9,8 @@ from .views import (
     createOrderEndPoint,
     GetOrderProductsEndPoint,
     GetOrderDetailsEndPoint,
+    approveOrderStatusEndPoint,
+    cancelOrderStatusEndPoint
     # getOrderDetailsEndPoint,
 )
 from rest_framework import routers
@@ -27,5 +29,6 @@ urlpatterns = router.urls
 urlpatterns += [
     path("admin/", admin.site.urls),
     path("create-order", createOrderEndPoint),
-    # path("order-details/<int:order_id>", getOrderDetailsEndPoint),
+    path("approve-order", approveOrderStatusEndPoint),
+    path("cancel-order", cancelOrderStatusEndPoint),
 ]
